@@ -6,5 +6,6 @@ Aplicativo flutter desenvolvido como complementação do curso da Udemy "Criaç�
 * Este processo pode ser feito no site <console.developers.google.com>;
 * O Passo a passo pode ser encontrado no vídeo https://www.youtube.com/watch?v=5SCKEvwJH4Y;
 * Crie um arquivo "api.dart" dentro da pasta "app" e cole a chave de acesso em uma constante chamada "API_KEY";
+  
   MODELO => const API_KEY = 'minha_chave_de_acesso';
 
