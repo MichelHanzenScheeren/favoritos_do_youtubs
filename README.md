@@ -2,13 +2,9 @@
 
 Aplicativo flutter desenvolvido como complementação do curso da Udemy "Criação de Apps Android e iOS com Flutter - Crie 16 Apps", de Daniel Ciolfi.
 
-* Getting Started
-This project is a starting point for a Flutter application.
-A few resources to get you started if this is your first Flutter project:
+* Para que o projeto funcione, é necessário gerar uma chave de acesso a api do youtube. 
+* Este processo pode ser feito no site <console.developers.google.com>;
+* O Passo a passo pode ser encontrado no vídeo https://www.youtube.com/watch?v=5SCKEvwJH4Y;
+* Crie um arquivo "api.dart" dentro da pasta "app" e cole a chave de acesso em uma constante chamada "API_KEY";
+  MODELO => const API_KEY = 'minha_chave_de_acesso';
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-* For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
