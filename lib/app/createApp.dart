@@ -6,10 +6,11 @@ class CreateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Favoritoss do Youtube',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Home(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
     );
   }
 }
