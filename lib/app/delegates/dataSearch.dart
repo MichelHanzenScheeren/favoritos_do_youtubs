@@ -22,12 +22,15 @@ class DataSearch extends SearchDelegate<String> {
         icon: AnimatedIcons.menu_arrow,
         progress: transitionAnimation,
       ),
-      onPressed: () {},
+      onPressed: () {
+        close(context, null);
+      },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
+    Future.delayed(Duration.zero).then((_) => close(context, query));
     return Container();
   }
 
@@ -47,9 +50,10 @@ class DataSearch extends SearchDelegate<String> {
           child: ListView(
             children: snapshot.data.map((suggestion) {
               return ListTile(
+                leading: Icon(Icons.search),
                 title: Text(suggestion.text),
                 onTap: () {
-                  query = suggestion.text;
+                  close(context, suggestion.text);
                 },
               );
             }).toList(),
