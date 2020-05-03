@@ -16,7 +16,7 @@ class CreateApp extends StatelessWidget {
           home: Home(),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.purple,
+            primarySwatch: Colors.grey,
           ),
         ),
       ),

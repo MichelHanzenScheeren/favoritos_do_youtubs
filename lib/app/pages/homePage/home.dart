@@ -3,6 +3,7 @@ import 'package:favoritosdoyoutubs/app/blocs/favoritesBloc.dart';
 import 'package:favoritosdoyoutubs/app/blocs/videosBloc.dart';
 import 'package:favoritosdoyoutubs/app/delegates/dataSearch.dart';
 import 'package:favoritosdoyoutubs/app/models/video.dart';
+import 'package:favoritosdoyoutubs/app/pages/homePage/favoritesList.dart';
 import 'package:favoritosdoyoutubs/app/pages/homePage/videoTile.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.black87,
         elevation: 0,
         title: Container(
           height: 25,
@@ -48,10 +49,16 @@ class Home extends StatelessWidget {
               },
             ),
           ),
-          IconButton(icon: Icon(Icons.star), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.star, color: Colors.white),
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => FavoritesList()));
+              }),
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () => openDataSearch(context),
+            color: Colors.white,
           ),
         ],
       ),
