@@ -17,10 +17,16 @@ class VideosBloc implements BlocBase {
   VideosBloc() {
     _youtubeApi = YoutubeApi();
     _searchController.stream.listen(_search);
+    inSearch.add(null);
   }
 
   void _search(String search) async {
-    videos = await _youtubeApi.search(search);
+    if(search == null || search.isNotEmpty) {
+      _videosController.sink.add([]);
+      videos = await _youtubeApi.search(search);
+    } else {
+      videos += await _youtubeApi.nextPageSearch();
+    }
     _videosController.sink.add(videos);
   }
 

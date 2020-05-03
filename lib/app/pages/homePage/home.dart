@@ -14,7 +14,12 @@ class Home extends StatelessWidget {
         elevation: 0,
         title: Container(
           height: 25,
-          child: Image.asset("images/youtube_logo.png", fit: BoxFit.cover),
+          child: GestureDetector(
+            child: Image.asset("images/youtube_logo.png", fit: BoxFit.cover),
+            onTap: () {
+              BlocProvider.of<VideosBloc>(context).inSearch.add(null);
+            },
+          ),
         ),
         actions: <Widget>[
           Align(
@@ -38,16 +43,24 @@ class Home extends StatelessWidget {
       body: StreamBuilder<List<Video>>(
         stream: BlocProvider.of<VideosBloc>(context).outVideos,
         builder: (context, snapshot) {
-          if(!snapshot.hasData) {
+          if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            return ListView(
-              children: snapshot.data.map((item) {
-                return VideoTile(item);
-              }).toList(),
-            );
+            return ListView.builder(
+                itemCount:
+                    snapshot.data.length > 1 ? snapshot.data.length + 1 : 0,
+                itemBuilder: (context, index) {
+                  if (index < snapshot.data.length) {
+                    return VideoTile(snapshot.data[index]);
+                  } else {
+                    BlocProvider.of<VideosBloc>(context).inSearch.add("");
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                });
           }
         },
       ),

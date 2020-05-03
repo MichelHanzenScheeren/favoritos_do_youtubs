@@ -5,7 +5,12 @@ class Video {
   String channel;
 
   Video.fromJson(Map<String, dynamic> json) {
-    id = json["id"]["videoId"];
+    try{
+      id = json["id"]["videoId"];
+    } catch (_) {
+      id = json["id"];
+    }
+
     title = json["snippet"]["title"];
     thumb = json["snippet"]["thumbnails"]["high"]["url"];
     channel = json["snippet"]["channelTitle"];

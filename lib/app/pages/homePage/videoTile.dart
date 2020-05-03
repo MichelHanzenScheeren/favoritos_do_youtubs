@@ -7,48 +7,44 @@ class VideoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          AspectRatio(
-            aspectRatio: 16.0 / 9.0,
-            child: Image.network(
-              video.thumb,
-              fit: BoxFit.cover,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        AspectRatio(
+          aspectRatio: 16.0 / 9.0,
+          child: Image.network(
+            video.thumb,
+            fit: BoxFit.cover,
           ),
-          Row(
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Row(
             children: <Widget>[
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      child: Text(
-                        video.title,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    Text(
+                      video.title,
+                      maxLines: 2,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text(
-                        "Canal '${video.channel}'",
-                        style: TextStyle(
-                          color: Colors.grey[400],
-                          fontSize: 12,
-                        ),
+                    SizedBox(height: 2),
+                    Text(
+                      "Canal '${video.channel}'",
+                      style: TextStyle(
+                        color: Colors.grey[400],
+                        fontSize: 12,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                   ],
                 ),
               ),
@@ -58,10 +54,10 @@ class VideoTile extends StatelessWidget {
                 onPressed: () {},
               ),
             ],
-          )
+          ),
+        )
 
-        ],
-      ),
+      ],
     );
   }
 }

@@ -6,13 +6,41 @@ import 'package:http/http.dart' as http;
 import 'package:favoritosdoyoutubs/app/api.dart';
 
 class YoutubeApi {
+  String _lastSearch;
+  String _nextPageToken;
 
   Future<List<Video>> search(String search) async {
-    http.Response response = await http.get(
-        "https://www.googleapis.com/youtube/v3/search?part=snippet&" +
-            "q=$search&type=video&key=$API_KEY&maxResults=10");
+    http.Response response;
+    if (search == null) {
+      response = await http.get(
+          "https://www.googleapis.com/youtube/v3/videos?part=snippet" +
+              "&chart=mostPopular&regionCode=br&key=$API_KEY&maxResults=10");
+    } else {
+      response = await http.get(
+          "https://www.googleapis.com/youtube/v3/search?part=snippet&" +
+              "q=$search&type=video&key=$API_KEY&maxResults=10");
+    }
+    var decoded = decode(response);
+    _lastSearch = search;
+    _nextPageToken = decoded["nextPageToken"];
+
+    return getVideos(decoded);
+  }
+
+  Future<List<Video>> nextPageSearch() async {
+    http.Response response;
+    if (_lastSearch == null) {
+      response = await http.get("https://www.googleapis.com/youtube/v3/videos" + ""
+          "?part=snippet&chart=mostPopular&regionCode=br&key=$API_KEY" +
+          "&maxResults=10&pageToken=$_nextPageToken");
+    } else {
+      response = await http.get("https://www.googleapis.com/" +
+          "youtube/v3/search?part=snippet&q=$_lastSearch&type=video&key=$API_KEY" +
+          "&maxResults=10&pageToken=$_nextPageToken");
+    }
 
     var decoded = decode(response);
+    _nextPageToken = decoded["nextPageToken"];
     return getVideos(decoded);
   }
 
