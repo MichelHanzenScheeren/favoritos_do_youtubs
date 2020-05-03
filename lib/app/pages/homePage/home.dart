@@ -1,4 +1,5 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:favoritosdoyoutubs/app/blocs/favoritesBloc.dart';
 import 'package:favoritosdoyoutubs/app/blocs/videosBloc.dart';
 import 'package:favoritosdoyoutubs/app/delegates/dataSearch.dart';
 import 'package:favoritosdoyoutubs/app/models/video.dart';
@@ -24,12 +25,27 @@ class Home extends StatelessWidget {
         actions: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: Text(
-              "0",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
+            child: StreamBuilder<List<Video>>(
+              stream: BlocProvider.of<FavoritesBloc>(context).outFavorites,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Text(
+                    "0",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  );
+                } else {
+                  return Text(
+                    snapshot.data.length.toString(),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  );
+                }
+              },
             ),
           ),
           IconButton(icon: Icon(Icons.star), onPressed: () {}),
