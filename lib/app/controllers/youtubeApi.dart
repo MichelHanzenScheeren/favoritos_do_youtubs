@@ -5,10 +5,7 @@ import 'package:favoritosdoyoutubs/app/models/video.dart';
 import 'package:http/http.dart' as http;
 import 'package:favoritosdoyoutubs/app/api.dart';
 
-class YoutubeController {
-  static final YoutubeController instance = YoutubeController.internal();
-  YoutubeController.internal();
-  factory YoutubeController() => instance;
+class YoutubeApi {
 
   Future<List<Video>> search(String search) async {
     http.Response response = await http.get(

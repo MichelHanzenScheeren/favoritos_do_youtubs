@@ -1,4 +1,8 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:favoritosdoyoutubs/app/blocs/videosBloc.dart';
 import 'package:favoritosdoyoutubs/app/delegates/dataSearch.dart';
+import 'package:favoritosdoyoutubs/app/models/video.dart';
+import 'package:favoritosdoyoutubs/app/pages/homePage/videoTile.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -26,17 +30,32 @@ class Home extends StatelessWidget {
           IconButton(icon: Icon(Icons.star), onPressed: () {}),
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () async {
-              String result = await showSearch(
-                context: context,
-                delegate: DataSearch(),
-              );
-              print(result);
-            },
+            onPressed: () => openDataSearch(context),
           ),
         ],
       ),
       backgroundColor: Colors.black54,
+      body: StreamBuilder<List<Video>>(
+        stream: BlocProvider.of<VideosBloc>(context).outVideos,
+        builder: (context, snapshot) {
+          if(!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView(
+              children: snapshot.data.map((item) {
+                return VideoTile(item);
+              }).toList(),
+            );
+          }
+        },
+      ),
     );
+  }
+
+  void openDataSearch(BuildContext context) async {
+    String result = await showSearch(context: context, delegate: DataSearch());
+    BlocProvider.of<VideosBloc>(context).inSearch.add(result);
   }
 }

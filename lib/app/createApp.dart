@@ -1,15 +1,20 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:favoritosdoyoutubs/app/blocs/videosBloc.dart';
 import 'package:favoritosdoyoutubs/app/pages/homePage/home.dart';
 import 'package:flutter/material.dart';
 
 class CreateApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Favoritoss do Youtube',
-      home: Home(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
+    return BlocProvider(
+      bloc: VideosBloc(),
+      child: MaterialApp(
+        title: 'Favoritoss do Youtube',
+        home: Home(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+        ),
       ),
     );
   }

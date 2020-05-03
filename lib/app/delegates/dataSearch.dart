@@ -1,4 +1,4 @@
-import 'package:favoritosdoyoutubs/app/controllers/youtubeController.dart';
+import 'package:favoritosdoyoutubs/app/controllers/youtubeApi.dart';
 import 'package:favoritosdoyoutubs/app/models/suggestion.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +38,7 @@ class DataSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     if (query.isEmpty) return Container();
     return FutureBuilder<List<Suggestion>>(
-      future: YoutubeController.instance.suggestions(query),
+      future: YoutubeApi().suggestions(query),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
