@@ -3,7 +3,7 @@ import 'package:favoritosdoyoutubs/app/blocs/favoritesBloc.dart';
 import 'package:favoritosdoyoutubs/app/blocs/videosBloc.dart';
 import 'package:favoritosdoyoutubs/app/delegates/dataSearch.dart';
 import 'package:favoritosdoyoutubs/app/models/video.dart';
-import 'package:favoritosdoyoutubs/app/pages/homePage/favoritesList.dart';
+import 'package:favoritosdoyoutubs/app/pages/favoritesPage/favoritesList.dart';
 import 'package:favoritosdoyoutubs/app/pages/homePage/videoTile.dart';
 import 'package:flutter/material.dart';
 
